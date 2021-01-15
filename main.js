@@ -47,17 +47,41 @@ printKata(5, ageOver28);
 
 //Kata 6 .filter() and .map()
 
-// const zencoBal = users.map(function (users) {
-//   return users.company === "ZENCO";
-// }).map(function(users) {
-//   return `
-//   <li>
-//     ${users.name} has a balance of ${users.balance}
-//   </li>`
-// }).reduce(function (text, users) {
-//   return text + users;
-// }
+const zencoBalError = users.map(function (users) {
+  return users.company === "ZENCO";
+}).map(function (users) {
+  return `
+  <li>
+    ${users} has a balance of ${users.balance}
+  </li>`
+}).reduce(function (text, users) {
+  return text + users;
+});
 
-printKata(6, zencoBal);
+const zencoBalLong = users.filter(function (user) {
+  return user.company === "ZENCO";
+}).map(function (user) {
+  return `<li>${user.name} has a balance of ${user.balance}</li>`
+}).reduce(function (previousUser, currentUser) {
+  return previousUser + currentUser;
+});
 
+const array = [1, 2, 3, 4, 5];
+const sum = array.reduce(function (previous, current) {
+  return previous + current;
+})
+
+
+
+
+const zencoBal = users.filter(user => user.company === "ZENCO").map(user => {
+  return `balance:${user.balance}, user:${user.name}`
+})
+
+printKata(6, sum);
+
+
+//age of every user with fugiat
 //Kata 7 .filter() .includes() and .map()
+const fugiatUsers = users.filter(user => user.tags.includes("fugiat")).map(user => `<li>${user.name} is ${user.age} years old </li>`);
+printKata(7, fugiatUsers);
